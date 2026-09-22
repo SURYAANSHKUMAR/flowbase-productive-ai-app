@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+:root {
+  --background: hsl(188 80% 98%);
+  --foreground: hsl(224 34% 12%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(224 34% 12%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(224 34% 12%);
+  --primary: hsl(174 84% 32%);
+  --primary-foreground: hsl(0 0% 100%);
+  --primary-soft: hsl(174 88% 92%);
+  --secondary: hsl(198 100% 95%);
+  --secondary-foreground: hsl(199 82% 24%);
+  --muted: hsl(196 65% 96%);
+  --muted-foreground: hsl(224 15% 36%);
+  --accent: hsl(171 86% 94%);
+  --accent-foreground: hsl(224 34% 12%);
+  --destructive: hsl(358 78% 58%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(198 48% 86%);
+  --input: hsl(198 48% 86%);
+  --ring: hsl(174 84% 32%);
+  --sidebar: hsl(0 0% 100%);
+  --sidebar-foreground: hsl(224 23% 25%);
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: hsl(240 10% 3.9%);
+  --foreground: hsl(0 0% 98%);
+  --card: hsl(240 10% 3.9%);
+  --card-foreground: hsl(0 0% 98%);
+  --popover: hsl(240 10% 3.9%);
+  --popover-foreground: hsl(0 0% 98%);
+  --primary: hsl(0 0% 98%);
+  --primary-foreground: hsl(240 5.9% 10%);
+  --secondary: hsl(240 3.7% 15.9%);
+  --secondary-foreground: hsl(0 0% 98%);
+  --muted: hsl(240 3.7% 15.9%);
+  --muted-foreground: hsl(240 5% 64.9%);
+  --accent: hsl(240 3.7% 15.9%);
+  --accent-foreground: hsl(0 0% 98%);
+  --destructive: hsl(0 62.8% 30.6%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(240 3.7% 15.9%);
+  --input: hsl(240 3.7% 15.9%);
+  --ring: hsl(240 4.9% 83.9%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+}
+
+@layer components {
+  .notes-editor .is-empty::before {
+    color: hsl(224 15% 36% / 0.62);
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+  }
+
+  .notes-editor p {
+    margin: 0.65rem 0;
+  }
+
+  .notes-editor h1 {
+    margin: 1.4rem 0 0.65rem;
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .notes-editor h2 {
+    margin: 1.25rem 0 0.55rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .notes-editor ul,
+  .notes-editor ol {
+    margin: 0.65rem 0;
+    padding-left: 1.35rem;
+  }
+
+  .notes-editor ul {
+    list-style: disc;
+  }
+
+  .notes-editor ol {
+    list-style: decimal;
+  }
+
+  .notes-editor blockquote {
+    margin: 1rem 0;
+    border-left: 3px solid hsl(174 84% 32% / 0.45);
+    padding-left: 1rem;
+    color: hsl(224 15% 36%);
+  }
+
+  .notes-editor pre {
+    margin: 1rem 0;
+    overflow-x: auto;
+    border-radius: 0.5rem;
+    background: hsl(224 34% 12%);
+    padding: 0.85rem 1rem;
+    color: white;
+    font-size: 0.88rem;
+  }
+
+  .notes-editor code {
+    border-radius: 0.35rem;
+    background: hsl(196 65% 96%);
+    padding: 0.1rem 0.28rem;
+    font-size: 0.9em;
+  }
+
+  .notes-editor pre code {
+    background: transparent;
+    padding: 0;
+  }
+
+  .notes-editor hr {
+    margin: 1.2rem 0;
+    border: 0;
+    border-top: 1px solid hsl(198 48% 86%);
+  }
+
+  .notes-editor ul[data-type="taskList"] {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .notes-editor li[data-type="taskItem"] {
+    align-items: flex-start;
+    display: flex;
+    gap: 0.55rem;
+  }
+
+  .notes-editor li[data-type="taskItem"] > label {
+    margin-top: 0.35rem;
+  }
+
+  .notes-editor li[data-type="taskItem"] > div {
+    min-width: 0;
+    flex: 1;
+  }
+}
